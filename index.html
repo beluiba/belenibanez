@@ -21,10 +21,10 @@
     --bg-inverse-card:#0F1E38;
     --text:#0D1B2A;
     --text-2:#3D5166;
-    --text-dim:#7A93A8;
+    --text-dim:#40627A;
     --text-inverse:#E2EAF4;
     --text-inverse-2:#8AA5C2;
-    --text-inverse-dim:#5B7A99;
+    --text-inverse-dim:#7098B8;
     --border:#C2CDD9;
     --border-inverse:rgba(96,165,250,0.18);
     --accent:#1E40AF;
@@ -43,10 +43,10 @@
     --bg-inverse-card:#E6ECF4;
     --text:#E2EAF4;
     --text-2:#8AA5C2;
-    --text-dim:#5B7A99;
+    --text-dim:#7098B8;
     --text-inverse:#0D1B2A;
     --text-inverse-2:#3D5166;
-    --text-inverse-dim:#7A93A8;
+    --text-inverse-dim:#40627A;
     --border:rgba(96,165,250,0.14);
     --border-inverse:#C2CDD9;
     --accent:#60A5FA;
@@ -92,9 +92,22 @@
   .cta:hover{transform:translateY(-1px)}
   .cta.ghost{background:transparent;color:var(--text);border-color:var(--border)}
   .cta.ghost.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .nav-menu-btn{display:none;width:36px;height:36px;border:1px solid var(--border);border-radius:4px;align-items:center;justify-content:center;cursor:pointer;background:transparent;flex-shrink:0}
+  .nav-menu-btn svg{width:16px;height:16px;stroke:var(--text);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .nav-mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);z-index:89;padding:8px 18px 16px;flex-direction:column}
+  .nav-mobile-menu.open{display:flex}
+  .nav-mobile-link{font-family:"DM Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-2);padding:13px 0;border-bottom:1px solid var(--border);transition:color .15s}
+  .nav-mobile-link:last-of-type{border-bottom:none}
+  .nav-mobile-link.active{color:var(--text);font-weight:600}
+  .nav-mobile-cta{margin-top:14px;align-self:flex-start}
   @media (max-width: 820px){
     .nav-links{display:none}
-    .nav-inner{gap:12px;padding:0 18px}
+    .nav-inner{gap:8px;padding:0 18px}
+    .nav-menu-btn{display:inline-flex}
+  }
+  @media (min-width: 821px){
+    .nav-mobile-menu{display:none!important}
+    .nav-menu-btn{display:none!important}
   }
 
   /* ───── hero ───── */
@@ -357,6 +370,27 @@
   .cs-carousel-dots{display:flex;justify-content:center;gap:6px;padding:12px;border-top:1px solid var(--border)}
   .cs-carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);cursor:pointer;border:none;padding:0}
   .cs-carousel-dot.active{background:var(--text)}
+  .cs-carousel-expand{position:absolute;top:8px;right:8px;width:28px;height:28px;background:var(--bg);border:1px solid var(--border);border-radius:2px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;opacity:0;transition:opacity .15s}
+  .cs-carousel:hover .cs-carousel-expand{opacity:1}
+  .cs-carousel-expand svg{width:12px;height:12px;stroke:var(--text);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  /* Fullscreen overlay */
+  .cs-fs-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center}
+  .cs-fs-overlay.open{display:flex}
+  .cs-fs-close{position:absolute;top:16px;right:16px;width:36px;height:36px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:2px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+  .cs-fs-close svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .cs-fs-inner{position:relative;width:100%;max-width:1200px;padding:0 56px;box-sizing:border-box}
+  .cs-fs-vp{overflow:hidden;width:100%}
+  .cs-fs-track{display:flex;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .cs-fs-slide{flex:0 0 100%;min-width:0;display:flex;flex-direction:column;align-items:center}
+  .cs-fs-slide .ratio{width:100%;aspect-ratio:auto!important;max-height:calc(100vh - 120px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:transparent!important}
+  .cs-fs-slide img{max-width:100%;max-height:calc(100vh - 120px);width:auto!important;height:auto!important;object-fit:contain!important;display:block}
+  .cs-fs-cap{font-family:"DM Mono",monospace;font-size:11px;color:rgba(255,255,255,0.45);padding:8px 0 0;text-transform:uppercase;letter-spacing:0.08em;text-align:center}
+  .cs-fs-nav{position:absolute;top:50%;transform:translateY(-50%);left:0;right:0;display:flex;justify-content:space-between;padding:0 8px;pointer-events:none;z-index:2}
+  .cs-fs-prev,.cs-fs-next{width:40px;height:40px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:2px;pointer-events:auto;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+  .cs-fs-prev svg,.cs-fs-next svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .cs-fs-dots{display:flex;justify-content:center;gap:6px;padding:14px 0 0}
+  .cs-fs-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;border:none;padding:0}
+  .cs-fs-dot.active{background:#fff}
 
   /* legacy modal classes kept (unused) */
   .modal-head,.modal-tabs,.modal-body,.modal-section,.hbtn,.tab{display:none}
@@ -382,14 +416,24 @@
         <svg id="themeIcon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
       <a class="cta ghost" id="navCta" href="#contact">Get in touch</a>
+      <button class="nav-menu-btn" id="navMenuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg id="navMenuIcon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
     </div>
   </div>
 </nav>
+<div class="nav-mobile-menu" id="navMobileMenu" aria-label="Mobile navigation">
+  <a class="nav-mobile-link" data-section="works" href="#works">Works</a>
+  <a class="nav-mobile-link" data-section="about" href="#about">About</a>
+  <a class="nav-mobile-link" data-section="skills" href="#skills">Skills</a>
+  <a class="nav-mobile-link" data-section="experience" href="#experience">Experience</a>
+  <a class="cta nav-mobile-cta" href="#contact" id="navMobileCta">Get in touch</a>
+</div>
 
 <!-- ═══════ HERO ═══════ -->
 <section id="main-content" class="hero">
   <div class="wrap hero-inner">
-    <div class="eyebrow">Senior Product Designer · UX Engineer · Spain</div>
+    <div class="eyebrow">Senior Product Designer · UX Engineer · Barcelona</div>
     <h1>I design it.<br/>I build it.</h1>
     <p class="hero-desc">15+ years shipping data-heavy interfaces that move real metrics across fintech, cybersecurity, enterprise B2B. I close the gap between design and production.</p>
     <a class="hero-cta" href="#works">View case studies
@@ -424,7 +468,8 @@
     <div style="margin-top:32px;padding-top:32px;border-top:1px solid var(--border-inverse);display:flex;gap:40px;flex-wrap:wrap">
       <div><span style="font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-inverse-dim);display:block;margin-bottom:6px">Specialisation</span><span style="color:var(--text-inverse);font-size:14px">Fintech · Cybersecurity · AI · Enterprise B2B</span></div>
       <div><span style="font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-inverse-dim);display:block;margin-bottom:6px">Stack</span><span style="color:var(--text-inverse);font-size:14px">Figma · React · TypeScript · Storybook</span></div>
-      <div><span style="font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-inverse-dim);display:block;margin-bottom:6px">Based in</span><span style="color:var(--text-inverse);font-size:14px">Spain · Open to remote</span></div>
+      <div><span style="font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-inverse-dim);display:block;margin-bottom:6px">Based in</span><span style="color:var(--text-inverse);font-size:14px">Barcelona, Spain · Open to remote</span></div>
+      <div><span style="font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-inverse-dim);display:block;margin-bottom:6px">Standards</span><span style="color:var(--text-inverse);font-size:14px">WCAG 2 AA</span></div>
     </div>
   </div>
 </section>
@@ -480,7 +525,7 @@
       <div class="eyebrow">Contact</div>
       <h2>Let's work together</h2>
       <p style="display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:16px"><span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 2s infinite"></span>Available now</p>
-      <p>Open to Senior Product Designer, UX Engineer, and Lead or Staff-level design roles in FinTech, cybersecurity, AI, and enterprise B2B.<br>Based in Spain, open to remote.</p>
+      <p>Open to Senior Product Designer, UX Engineer, and Lead or Staff-level design roles in FinTech, cybersecurity, AI, and enterprise B2B.<br>Based in Barcelona, Spain, open to remote.</p>
     </div>
     <div class="contact-links">
       <a class="contact-link" href="mailto:belenibanezm@gmail.com" style="gap:20px">
@@ -504,7 +549,7 @@
 
 <footer>
   <div class="wrap foot-inner">
-    <span>© 2026 Belén Ibáñez</span>
+    <span style="font-family:'Fraunces',serif;font-size:13px;font-weight:700;letter-spacing:-0.01em;text-transform:none;color:var(--text-dim);opacity:0.7">Belén Ibáñez</span>
     <div style="display:flex;gap:18px">
       <a href="https://linkedin.com/in/belenibanez" target="_blank" rel="noopener">LinkedIn</a>
       <a href="mailto:belenibanezm@gmail.com">Email</a>
@@ -702,7 +747,7 @@ try {
 // ───── BOFA REPRESENTATIVE SCREENS ─────
 // These are design concept mockups, not screenshots of the actual Bank of America product.
 const BOFA_SCREENS = (() => {
-  const B='#0B0F14',S='rgba(255,255,255,0.05)',BR='rgba(255,255,255,0.09)',T='#E2EAF4',D='rgba(226,234,244,0.45)';
+  const B='#0B0F14',S='rgba(255,255,255,0.05)',BR='rgba(255,255,255,0.09)',T='#E2EAF4',D='rgba(226,234,244,0.7)';
   const G='#22C55E',R='#EF4444',A='#F59E0B',BL='#60A5FA';
   const badge=(type,label)=>{const c={gtt:{bg:'rgba(34,197,94,0.12)',b:'rgba(34,197,94,0.3)',col:G,sym:'✓'},ngtt:{bg:'rgba(239,68,68,0.12)',b:'rgba(239,68,68,0.3)',col:R,sym:'✕'},review:{bg:'rgba(245,158,11,0.12)',b:'rgba(245,158,11,0.3)',col:A,sym:'△'}}[type];return `<span style="display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:3px;background:${c.bg};border:1px solid ${c.b};font-size:9px;color:${c.col};font-weight:600;letter-spacing:0.04em;white-space:nowrap;font-family:system-ui">${c.sym} ${label}</span>`;};
 
@@ -1272,7 +1317,7 @@ function renderGTT(){
 
 // ───── SKILLS ─────
 const SKILLS = {
-  design: ["Product Design","Interaction Design","UX Research","Data Visualisation","Information Architecture","Design Systems","Prototyping","Figma","Accessibility","Usability Testing"],
+  design: ["Product Design","Interaction Design","UX Research","Data Visualisation","Information Architecture","Design Systems","Prototyping","Figma","Accessibility","WCAG 2 AA","Usability Testing"],
   fe: ["React","Next.js","TypeScript","Angular","Ionic","Svelte","Tailwind CSS","SCSS","Storybook","HTML / CSS","Git"],
   ai: [["Claude",false],["Figma AI",false],["Cursor",false],["Lovable",false],["Figma Make",false],["Stitch",false],["GitHub Copilot",false]]
 };
@@ -1312,7 +1357,7 @@ function updateNavActive(){
     if (el.offsetTop <= y) current = id;
   }
   if (atBottom) current = "contact";
-  document.querySelectorAll(".nav-link").forEach(a=>{
+  document.querySelectorAll(".nav-link, .nav-mobile-link").forEach(a=>{
     a.classList.toggle("active", a.dataset.section === current);
   });
   const navCta = document.getElementById("navCta");
@@ -1324,6 +1369,33 @@ function updateNavActive(){
 window.addEventListener("scroll", updateNavActive, {passive:true});
 window.addEventListener("DOMContentLoaded", updateNavActive);
 updateNavActive();
+
+// ───── MOBILE NAV ─────
+(()=>{
+  const btn = document.getElementById("navMenuBtn");
+  const menu = document.getElementById("navMobileMenu");
+  const icon = document.getElementById("navMenuIcon");
+  if (!btn || !menu) return;
+  const OPEN_ICON = '<path d="M18 6L6 18M6 6l12 12"/>';
+  const CLOSE_ICON = '<path d="M3 6h18M3 12h18M3 18h18"/>';
+  function close(){
+    menu.classList.remove("open");
+    btn.setAttribute("aria-expanded","false");
+    icon.innerHTML = CLOSE_ICON;
+  }
+  btn.addEventListener("click", (e)=>{
+    e.stopPropagation();
+    const opening = !menu.classList.contains("open");
+    menu.classList.toggle("open");
+    btn.setAttribute("aria-expanded", opening ? "true" : "false");
+    icon.innerHTML = opening ? OPEN_ICON : CLOSE_ICON;
+  });
+  menu.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
+  document.addEventListener("click", e=>{
+    if (menu.classList.contains("open") && !menu.contains(e.target) && !btn.contains(e.target)) close();
+  });
+  document.addEventListener("keydown", e=>{ if(e.key==="Escape") close(); });
+})();
 
 // ───── CASE STUDY MODAL ─────
 const caseModal = document.getElementById("caseModal");
@@ -1566,6 +1638,88 @@ document.querySelectorAll(".case").forEach(card=>{
   });
 });
 
+// ───── FULLSCREEN CAROUSEL ─────
+function getOrCreateFsOverlay(){
+  let ov = document.getElementById("cs-fs-overlay");
+  if (!ov){
+    ov = document.createElement("div");
+    ov.id = "cs-fs-overlay";
+    ov.className = "cs-fs-overlay";
+    ov.innerHTML = `
+      <button class="cs-fs-close" aria-label="Close fullscreen"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <div class="cs-fs-inner">
+        <div class="cs-fs-nav">
+          <button class="cs-fs-prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="cs-fs-next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="cs-fs-vp"><div class="cs-fs-track"></div></div>
+        <div class="cs-fs-dots"></div>
+      </div>`;
+    document.body.appendChild(ov);
+    ov.addEventListener("click", e=>{ if(e.target===ov) closeFsOverlay(); });
+    ov.querySelector(".cs-fs-close").onclick = closeFsOverlay;
+    document.addEventListener("keydown", e=>{
+      if (!ov.classList.contains("open")) return;
+      if (e.key==="Escape") closeFsOverlay();
+      if (e.key==="ArrowLeft" && ov._fsDelta) ov._fsDelta(-1);
+      if (e.key==="ArrowRight" && ov._fsDelta) ov._fsDelta(1);
+    });
+  }
+  return ov;
+}
+function openFsOverlay(sourceWrap, startIdx){
+  const ov = getOrCreateFsOverlay();
+  const fsTrack = ov.querySelector(".cs-fs-track");
+  const fsDotsWrap = ov.querySelector(".cs-fs-dots");
+  const sourceSlides = sourceWrap.querySelectorAll(".cs-carousel-slide");
+  const n = sourceSlides.length;
+  fsTrack.innerHTML = "";
+  fsDotsWrap.innerHTML = "";
+  sourceSlides.forEach((sl, idx)=>{
+    const fsSlide = document.createElement("div");
+    fsSlide.className = "cs-fs-slide";
+    const cap = sl.querySelector(".cs-carousel-cap");
+    const ratioSrc = sl.querySelector(".ratio");
+    const ratioDiv = document.createElement("div");
+    ratioDiv.className = "ratio";
+    if (ratioSrc) ratioDiv.innerHTML = ratioSrc.innerHTML;
+    fsSlide.appendChild(ratioDiv);
+    if (cap){
+      const capDiv = document.createElement("div");
+      capDiv.className = "cs-fs-cap";
+      capDiv.textContent = cap.textContent;
+      fsSlide.appendChild(capDiv);
+    }
+    fsTrack.appendChild(fsSlide);
+    const dot = document.createElement("button");
+    dot.className = "cs-fs-dot";
+    dot.dataset.i = idx;
+    fsDotsWrap.appendChild(dot);
+  });
+  const fsDots = fsDotsWrap.querySelectorAll(".cs-fs-dot");
+  let cur = startIdx || 0;
+  function fsGoTo(idx){
+    cur = (idx + n) % n;
+    fsTrack.style.transform = `translateX(-${cur*100}%)`;
+    fsDots.forEach((d,i)=>d.classList.toggle("active", i===cur));
+  }
+  ov._fsDelta = delta => fsGoTo(cur + delta);
+  ov.querySelector(".cs-fs-prev").onclick = ()=>fsGoTo(cur-1);
+  ov.querySelector(".cs-fs-next").onclick = ()=>fsGoTo(cur+1);
+  fsDots.forEach((d,idx)=>d.onclick=()=>fsGoTo(idx));
+  const fsNav = ov.querySelector(".cs-fs-nav");
+  fsNav.style.display = n <= 1 ? "none" : "";
+  fsDotsWrap.style.display = n <= 1 ? "none" : "";
+  fsGoTo(cur);
+  ov.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeFsOverlay(){
+  const ov = document.getElementById("cs-fs-overlay");
+  if (ov) ov.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
 // ───── CAROUSEL ─────
 function initCarousel(wrap){
   if (!wrap) return;
@@ -1584,6 +1738,15 @@ function initCarousel(wrap){
   if (prev) prev.onclick = ()=>go(i-1);
   if (next) next.onclick = ()=>go(i+1);
   dots.forEach((d,idx)=>d.onclick = ()=>go(idx));
+  // Expand button
+  if (!wrap.querySelector(".cs-carousel-expand")){
+    const btn = document.createElement("button");
+    btn.className = "cs-carousel-expand";
+    btn.setAttribute("aria-label","Open fullscreen");
+    btn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>`;
+    btn.onclick = ()=>openFsOverlay(wrap, i);
+    wrap.appendChild(btn);
+  }
   go(0);
 }
 function initAllCarousels(){
